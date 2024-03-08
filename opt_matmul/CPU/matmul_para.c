@@ -208,9 +208,9 @@ void matmul_v6(const float *A, const float *B, float *C, int M, int N, int K)
 	for(i3 = 0; i3 < M; i3 += l3)
 		for(i2 = 0; i2 < N; i2 += l2)
 			for(i1 = 0; i1 < K; i1 += l1)
-				for(j = i2; j < i2+l2; j += ker_w)
-					for(i = i3; i < i3+l3; i += ker_h)
-						kernel(A, B, C, M, N, K, i, j, i1, i1+l1);
+				for(j = i2; j < fmin(i2+l2,N); j += ker_w)
+					for(i = i3; i < fmin(i3+l3,M); i += ker_h)
+						kernel(A, B, C, M, N, K, i, j, i1, fmin(i1+l1,K));
 
 }
 
