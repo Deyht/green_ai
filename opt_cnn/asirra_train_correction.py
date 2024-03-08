@@ -1,7 +1,7 @@
 	
 import numpy as np
 from threading import Thread
-from aux_fct import *
+from aux_fct_correction import *
 import gc, sys, glob
 
 
@@ -17,7 +17,7 @@ def data_augm():
 	return
 
 
-total_iter = 6000
+total_iter = 4000
 nb_iter_per_augm = 2
 if(nb_iter_per_augm > 1):
 	shuffle_frequency = 1
@@ -48,41 +48,6 @@ cnn.create_dataset("TRAIN", nb_images_per_iter, input_data[:,:], targets[:,:])
 if(load_iter > 0):
 	cnn.load("net_save/net0_s%04d.dat"%load_iter, load_iter, bin=1)
 else:
-
-	"""
-	cnn.conv(f_size=i_ar([5,5]), nb_filters=8 , padding=i_ar([2,2]), activation="RELU")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.conv(f_size=i_ar([5,5]), nb_filters=16, padding=i_ar([2,2]), activation="RELU")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.dense(nb_neurons=256, activation="RELU", drop_rate=0.5)
-	cnn.dense(nb_neurons=128, activation="RELU", drop_rate=0.2)
-	cnn.dense(nb_neurons=nb_class, strict_size=1, activation="SMAX")
-	"""
-
-	"""
-	cnn.conv(f_size=i_ar([3,3]), nb_filters=16  , padding=i_ar([1,1]), activation="LIN")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.norm(group_size=2, activation="RELU")
-	
-	cnn.conv(f_size=i_ar([3,3]), nb_filters=32  , padding=i_ar([1,1]), activation="LIN")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.norm(group_size=2, activation="RELU")
-
-	cnn.conv(f_size=i_ar([3,3]), nb_filters=64	, padding=i_ar([1,1]), activation="LIN")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.norm(group_size=4, activation="RELU")
-	
-	cnn.conv(f_size=i_ar([3,3]), nb_filters=128 , padding=i_ar([1,1]), activation="LIN")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.norm(group_size=4, activation="RELU")
-	
-	cnn.conv(f_size=i_ar([3,3]), nb_filters=256 , padding=i_ar([1,1]), activation="LIN")
-	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
-	cnn.norm(group_size=8, activation="RELU")
-	
-	cnn.conv(f_size=i_ar([1,1]), nb_filters=nb_class , padding=i_ar([0,0]), activation="LIN")
-	cnn.pool(p_size=i_ar([1,1]), p_type="AVG", p_global=1, activation="SMAX")
-	"""
 	
 	cnn.conv(f_size=i_ar([3,3]), nb_filters=16  , padding=i_ar([1,1]), activation="LIN")
 	cnn.pool(p_size=i_ar([2,2]), p_type="MAX")
