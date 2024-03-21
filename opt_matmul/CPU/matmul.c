@@ -88,7 +88,7 @@ void matmul_v4(const float *A, const float *B, float *C, int M, int N, int K)
 {
 	int i,j,k;
 	// Rounded number of 8-element vec in a K
-	if(k % 8 != 0)
+	if(K % 8 != 0)
 	{
 		printf("Error, mismatch between matrix size and kernel size");
 		exit(EXIT_FAILURE);
